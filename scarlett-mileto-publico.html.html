@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Scarlett Mileto — Private Archive Moot</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  min-height:100vh;
+  font-family:Inter,"Segoe UI",Arial,sans-serif;
+  color:#2d1a16;
+  background:
+    radial-gradient(circle at 14% 8%,rgba(255,255,255,.98),transparent 28%),
+    radial-gradient(circle at 86% 4%,rgba(170,110,95,.30),transparent 27%),
+    radial-gradient(circle at 44% 100%,rgba(255,224,198,.38),transparent 30%),
+    linear-gradient(135deg,#fffaf4,#ead8ca 48%,#2b1512);
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:linear-gradient(rgba(85,53,37,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(85,53,37,.028) 1px,transparent 1px);
+  background-size:34px 34px;mix-blend-mode:multiply;
+}
+body::after{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(circle at 50% 20%,transparent 0 32%,rgba(38,18,15,.18) 70%,rgba(38,18,15,.48) 100%);
+  opacity:.72;
+}
+.app{position:relative;z-index:1;display:block;width:min(760px,calc(100% - 16px));min-height:100vh;margin:0 auto;padding:14px 0}
+.public-hero{display:grid;width:min(720px,100%);min-height:calc(100vh - 28px);place-items:center;text-align:center;padding:30px 0}
+body.entered .public-hero{display:none}
+.stage{display:none;min-height:100vh;place-items:center}
+body.entered .stage{display:grid}
+.scene{width:min(760px,100%);display:grid;grid-template-columns:1fr;place-items:center;text-align:center;padding:22px 0}
+.hero-card{
+  position:relative;width:min(620px,100%);border:1px solid rgba(255,255,255,.28);border-radius:42px;padding:34px 26px 30px;
+  background:radial-gradient(circle at 18% 4%,rgba(255,255,255,.86),transparent 32%),radial-gradient(circle at 86% 0%,rgba(144,63,53,.18),transparent 28%),rgba(255,248,239,.54);
+  backdrop-filter:blur(22px);box-shadow:0 44px 100px rgba(41,18,15,.30), inset 0 1px 0 rgba(255,255,255,.62);overflow:hidden;
+}
+.hero-card::before{content:"";position:absolute;inset:12px;border:1px solid rgba(111,77,62,.13);border-radius:32px;pointer-events:none}
+.small{display:inline-flex;border:1px solid rgba(111,77,62,.18);background:rgba(255,255,255,.42);padding:7px 10px;border-radius:999px;color:#6f4d3e;font-size:10px;font-weight:1000;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:12px}
+.hero-mark{width:76px;height:76px;border-radius:26px;margin:0 auto 22px;background:radial-gradient(circle at 30% 20%,#fff,transparent 32%),linear-gradient(145deg,#fff4e7,#d7a57d 52%,#4b181e);box-shadow:0 20px 40px rgba(75,24,30,.22),inset 0 1px 0 rgba(255,255,255,.7);display:grid;place-items:center;font-family:Georgia,"Times New Roman",serif;font-size:32px;color:#3b1f19;font-style:italic}
+.hero-card h1{font-family:Georgia,"Times New Roman",serif;font-weight:400;margin:0;font-size:62px;line-height:.88;letter-spacing:-3px;color:#2d1a16}
+.hero-card p{margin:18px auto 0;color:#735449;line-height:1.62;font-size:15px;font-weight:650;max-width:500px}
+.hero-quote{margin:22px auto 0;max-width:460px;font-family:Georgia,"Times New Roman",serif;font-size:18px;line-height:1.45;color:#5c362d;font-style:italic}
+.enter-btn{margin-top:26px;border:0;border-radius:999px;padding:14px 22px;color:#fff3e7;background:linear-gradient(135deg,#4b181e,#2d1712);box-shadow:0 14px 30px rgba(75,24,30,.28), inset 0 1px 0 rgba(255,255,255,.15);font-size:11px;letter-spacing:1.2px;text-transform:uppercase;font-weight:1000;cursor:pointer}
+.mini-line{margin-top:18px;color:#806154;font-size:11px;font-weight:850;letter-spacing:.4px;text-transform:uppercase}
+.public-title{margin:0 0 16px;max-width:520px}
+.public-title h2{font-family:Georgia,"Times New Roman",serif;font-weight:400;margin:0;font-size:44px;line-height:.95;letter-spacing:-1.6px;color:#2d1a16}
+.public-title p{margin:12px auto 0;color:#735449;line-height:1.55;font-size:14px;font-weight:650;max-width:470px}
+.phone{
+  position:relative;width:min(390px,100%);min-height:690px;border-radius:54px;padding:23px;
+  background:radial-gradient(circle at 24% 7%,rgba(255,255,255,.95),transparent 18%),radial-gradient(circle at 80% 92%,rgba(105,38,45,.42),transparent 24%),linear-gradient(145deg,#fff9ef,#d7b99a 48%,#351b17);
+  border:1px solid rgba(255,255,255,.72);box-shadow:0 42px 95px rgba(55,27,18,.36),inset 0 0 0 2px rgba(255,255,255,.48),inset 14px 18px 28px rgba(255,255,255,.35),inset -20px -28px 34px rgba(61,31,24,.26);
+}
+.phone::before{content:"";position:absolute;inset:10px;border-radius:45px;border:1px solid rgba(255,255,255,.48);pointer-events:none}
+.phone::after{content:"";position:absolute;left:24px;top:28px;width:42px;height:78%;border-radius:999px;background:linear-gradient(90deg,rgba(255,255,255,.28),transparent);filter:blur(3px);opacity:.7;pointer-events:none}
+.speaker{width:98px;height:11px;border-radius:999px;margin:0 auto 18px;background:linear-gradient(180deg,#2d1b17,#1e100d);box-shadow:inset 0 2px 4px rgba(0,0,0,.46),0 1px 0 rgba(255,255,255,.18)}
+.screen-shell{position:relative;height:246px;border-radius:32px;padding:9px;margin-bottom:18px;background:linear-gradient(180deg,#efe0ce,#7f4c35 48%,#2d1712);box-shadow:0 12px 26px rgba(57,28,18,.22),inset 0 1px 0 rgba(255,255,255,.5)}
+.screen{position:relative;height:100%;overflow:hidden;border-radius:24px;background:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(145deg,#2b1815,#563026 58%,#2c1713);background-size:23px 23px,23px 23px,auto;border:1px solid rgba(255,255,255,.22);box-shadow:inset 0 0 22px rgba(0,0,0,.32)}
+.status{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:center;padding:13px 14px 0;color:#f6d5bc;font-size:10px;font-weight:1000;text-transform:uppercase;letter-spacing:1px}
+.notification{position:relative;z-index:2;margin:11px 13px 0;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.08);backdrop-filter:blur(8px);border-radius:16px;padding:10px;color:#ffe9d7;font-size:12px;line-height:1.35;font-weight:750}
+.main-message{position:relative;z-index:2;height:calc(100% - 98px);display:grid;place-items:center;text-align:center;padding:12px 20px 26px;font-family:Georgia,"Times New Roman",serif;font-size:31px;line-height:1;font-style:italic;color:#fff3e7;text-shadow:0 0 18px rgba(255,210,180,.35);word-break:break-word}
+.soft{position:absolute;z-index:2;left:16px;right:16px;bottom:10px;display:flex;justify-content:space-between;color:#efc8aa;font-size:12px;font-weight:1000}
+.overlay{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) scale(.96);width:92%;max-height:93%;overflow:auto;z-index:9;opacity:0;pointer-events:none;padding:14px;border-radius:20px;background:rgba(43,24,21,.98);border:1px solid rgba(255,255,255,.17);box-shadow:0 18px 38px rgba(0,0,0,.38);text-align:center;color:#fff4e9;transition:.15s ease}
+.overlay.show{opacity:1;pointer-events:auto;transform:translate(-50%,-50%) scale(1)}
+.overlay h3{margin:0 0 9px;color:#f7c9a5;text-transform:uppercase;letter-spacing:1.2px;font-size:12px;font-weight:1000}
+.overlay p{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:17px;line-height:1.35;white-space:pre-line}
+.overlay a{color:#ffdfc7;font-weight:900;word-break:break-all}
+.qr-img{display:block;width:min(100%,166px);max-width:166px;aspect-ratio:1/1;object-fit:contain;margin:7px auto 8px;padding:7px;border-radius:12px;background:white}
+.barcode{width:100%;max-width:220px;margin:7px auto 8px;padding:12px 10px;border-radius:12px;background:#fffaf4;color:#1e100d;font-family:monospace;font-size:28px;letter-spacing:2px;line-height:1}
+.sub{margin-top:8px;color:#d2ac92;font-size:11px;line-height:1.35;font-weight:800;font-family:Inter,"Segoe UI",Arial,sans-serif}
+.btn-inline{margin-top:10px;width:100%;border:1px solid rgba(255,255,255,.16);border-radius:13px;background:rgba(255,255,255,.07);color:#fff1e4;cursor:pointer;padding:10px 9px;font-size:11px;font-weight:1000;text-transform:uppercase}
+.nav{display:grid;grid-template-columns:64px 1fr 64px;gap:10px;margin-bottom:13px}
+button{font:inherit;cursor:pointer;border:0;-webkit-tap-highlight-color:transparent}
+.call,.end{height:50px;border-radius:18px;color:white;font-size:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.22),0 8px 14px rgba(44,20,14,.18)}
+.call{background:linear-gradient(180deg,#6f8655,#2c3f23)}
+.end{background:linear-gradient(180deg,#8b4b38,#3a1815)}
+.center{border-radius:18px;background:linear-gradient(180deg,#3d251f,#24130f);color:#ffe4d0;font-size:11px;text-transform:uppercase;letter-spacing:.8px;font-weight:1000;box-shadow:inset 0 0 0 2px rgba(255,255,255,.08)}
+.keys{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.key{min-height:50px;border-radius:16px;color:white;background:radial-gradient(circle at 50% 10%,rgba(255,255,255,.28),transparent 25%),linear-gradient(180deg,#f3d5bd,#a96f53 55%,#3e1d18);box-shadow:inset 0 1px 0 rgba(255,255,255,.34),0 7px 12px rgba(44,20,14,.14)}
+.key b{display:block;font-size:18px;line-height:1}
+.key small{display:block;margin-top:3px;font-size:8px;text-transform:uppercase;letter-spacing:.4px;opacity:.82;font-weight:900}
+.full-qr{position:fixed;inset:0;display:none;place-items:center;z-index:50;padding:18px;background:rgba(29,14,12,.86);backdrop-filter:blur(12px)}
+.full-qr.show{display:grid}
+.full-card{width:min(430px,100%);border-radius:28px;padding:18px;background:#2b1815;border:1px solid rgba(255,255,255,.18);box-shadow:0 30px 90px rgba(0,0,0,.5);text-align:center;color:#fff4e9}
+.full-card h3{margin:0 0 12px;color:#f7c9a5;text-transform:uppercase;letter-spacing:1px;font-size:13px}
+.full-card img{width:min(100%,310px);max-width:310px;aspect-ratio:1/1;object-fit:contain;border-radius:18px;background:white;padding:10px;margin:0 auto 12px;display:block}
+.social-list{display:grid;gap:7px;margin-top:10px;text-align:left}
+.social-item{border:1px solid rgba(255,255,255,.13);border-radius:14px;background:rgba(255,255,255,.07);color:#fff0e4;padding:10px 11px;width:100%;text-align:left;font-size:13px;font-weight:850}
+.social-item.selected{border-color:rgba(247,201,165,.45);background:rgba(247,201,165,.12)}
+.social-item span{display:block;color:#d2ac92;font-size:10px;margin-top:4px;word-break:break-all}
+@media(max-width:460px){
+  .app{width:min(100% - 14px,760px)}
+  .hero-card{border-radius:32px;padding:28px 18px}
+  .hero-card h1{font-size:46px}
+  .phone{width:100%;min-height:650px;border-radius:44px;padding:20px 18px 22px}
+  .screen-shell{height:250px}
+  .main-message{font-size:27px}
+  .nav{grid-template-columns:58px 1fr 58px}
+  .public-title h2{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<div class="full-qr" id="fullQr"><div class="full-card" id="fullCard"></div></div>
+
+<main class="app">
+  <section class="public-hero">
+    <div class="hero-card">
+      <div class="small" id="heroKickerView"></div>
+      <div class="hero-mark">S</div>
+      <h1 id="heroTitleView"></h1>
+      <p id="heroTextView"></p>
+      <div class="hero-quote" id="heroQuoteView"></div>
+      <button class="enter-btn" id="enterBtn"></button>
+      <div class="mini-line">toque · descubra · compartilhe</div>
+    </div>
+  </section>
+
+  <section class="stage">
+    <section class="scene">
+      <div class="public-title">
+        <div class="small">Scarlett Mileto · archive phone</div>
+        <h2 id="publicTitle"></h2>
+        <p id="publicSubtitle"></p>
+      </div>
+
+      <article class="phone">
+        <div class="speaker"></div>
+        <section class="screen-shell">
+          <div class="screen">
+            <div class="status"><span id="phoneTopView"></span><span>agora</span></div>
+            <div class="notification" id="notificationView"></div>
+            <div class="main-message" id="mainMessage"></div>
+            <div class="overlay" id="overlay"></div>
+            <div class="soft"><span>arquivo</span><span>voltar</span></div>
+          </div>
+        </section>
+
+        <section class="nav">
+          <button class="call" id="callBtn">☎</button>
+          <button class="center" id="centerBtn">2x segredo</button>
+          <button class="end" id="endBtn">✕</button>
+        </section>
+
+        <section class="keys" id="keys">
+          <button class="key"><b>1</b><small>nota</small></button>
+          <button class="key"><b>2</b><small>nota</small></button>
+          <button class="key"><b>3</b><small>nota</small></button>
+          <button class="key" data-action="makeqr"><b>4</b><small>criar qr</small></button>
+          <button class="key" data-action="socials"><b>@</b><small>canais</small></button>
+          <button class="key" data-action="text6"><b>6</b><small>texto</small></button>
+          <button class="key" data-action="text7"><b>7</b><small>texto</small></button>
+          <button class="key" data-action="barcode"><b>8</b><small>código</small></button>
+          <button class="key" data-action="qr9"><b>9</b><small>mostrar</small></button>
+          <button class="key" data-action="share"><b>*</b><small>share</small></button>
+          <button class="key"><b>0</b><small>nota</small></button>
+          <button class="key" data-action="home"><b>#</b><small>início</small></button>
+        </section>
+      </article>
+    </section>
+  </section>
+</main>
+
+<script>
+
+const state = {
+  "heroKicker": "Scarlett Mileto · private archive",
+  "heroTitle": "Private Archive Moot",
+  "heroText": "Um pequeno objeto digital com notas, sinais, links e mensagens que não precisam se explicar de primeira.",
+  "heroQuote": "“uma nota apareceu no arquivo. talvez seja sobre moda, internet, beleza ou só uma pista do presente.”",
+  "heroButton": "abrir arquivo",
+  "pageTitle": "Private Archive Moot Phone",
+  "pageSubtitle": "Um telefone editorial para guardar pequenos sinais de Scarlett Mileto.",
+  "phoneTop": "Scarlett Moot Archive",
+  "notification": "notificação: uma nota não tão secreta assim foi deixada por Scarlett Mileto.",
+  "mainText": "abrir arquivo",
+  "link": "https://scarlettmileto.substack.com/p/cultura-de-leitura",
+  "linkLabel": "abrir Substack",
+  "theme": "comentário da Scarlett: o arquivo é onde uma estética deixa de ser só imagem e começa a virar sinal. moda, internet, beleza e cultura digital cabem melhor quando parecem uma pista.",
+  "secret": "nota secreta: observar também é criar. algumas coisas só aparecem para quem sabe olhar duas vezes.",
+  "text6": " 01: PHRASES \" Cada dia é uma nova oportunidade para recomeçar.\"",
+  "text7": " 02: a internet transforma pequenas obsessões em linguagem. ?",
+  "barcode": "SCARLETT-001",
+  "barcodeCaption": "código interno do arquivo Mileto. TESTE ",
+  "qr9Title": " Alguém específico?",
+  "qr9Content": " L-I-K-E",
+  "socials": "Substack | https://substack.com/@scarlettmileto\nInstagram | https://instagram.com/scarlettmileto1\nPinterest | https://pinterest.com/\nSpotify | https://spotify.com/"
+};
+const $ = id => document.getElementById(id);
+const overlay = $("overlay");
+const fullQr = $("fullQr");
+const fullCard = $("fullCard");
+let selectedSocial = 0;
+
+function esc(v){
+  return String(v ?? "")
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
+}
+function normalizeUrl(v){
+  const c = String(v || "").trim();
+  if(!c) return "https://example.com";
+  return /^https?:\/\//i.test(c) ? c : "https://" + c;
+}
+function qrUrl(v,size=220){
+  return "https://api.qrserver.com/v1/create-qr-code/?size=" + size + "x" + size + "&margin=12&data=" + encodeURIComponent(v || " ");
+}
+function apply(){
+  $("heroKickerView").textContent = state.heroKicker || "";
+  $("heroTitleView").textContent = state.heroTitle || "";
+  $("heroTextView").textContent = state.heroText || "";
+  $("heroQuoteView").textContent = state.heroQuote || "";
+  $("enterBtn").textContent = state.heroButton || "abrir";
+  $("publicTitle").textContent = state.pageTitle || "";
+  $("publicSubtitle").textContent = state.pageSubtitle || "";
+  $("phoneTopView").textContent = state.phoneTop || "";
+  $("notificationView").textContent = state.notification || "";
+  $("mainMessage").textContent = state.mainText || "";
+}
+function show(html){overlay.innerHTML = html; overlay.classList.add("show");}
+function home(){overlay.classList.remove("show"); overlay.innerHTML = ""; $("mainMessage").textContent = state.mainText || "";}
+function openFull(title,content,caption){
+  fullCard.innerHTML = '<h3>' + esc(title) + '</h3><img src="' + qrUrl(content,360) + '" alt="QR grande"><p class="sub">' + esc(caption || content) + '</p><button class="btn-inline" id="closeFull">fechar</button>';
+  fullQr.classList.add("show");
+  $("closeFull").onclick = () => fullQr.classList.remove("show");
+}
+fullQr.addEventListener("click", e => { if(e.target.id === "fullQr") fullQr.classList.remove("show"); });
+
+function openLink(){
+  const url = normalizeUrl(state.link);
+  show('<h3>' + esc(state.linkLabel) + '</h3><p><a href="' + esc(url) + '" target="_blank" rel="noopener noreferrer">' + esc(url) + '</a></p><button class="btn-inline" id="openLinkNow">abrir link agora</button>');
+  $("openLinkNow").onclick = () => window.open(url, "_blank", "noopener,noreferrer");
+}
+function themeNote(){show('<h3>comentário</h3><p>' + esc(state.theme) + '</p>');}
+function secretHint(){show('<h3>nota secreta</h3><p>clique duas vezes no botão central.</p>');}
+function secretReveal(){
+  show('<h3>nota revelada</h3><p>' + esc(state.secret) + '</p><button class="btn-inline" id="copySecret">copiar nota</button>');
+  $("copySecret").onclick = async () => {
+    await navigator.clipboard.writeText(state.secret || "");
+    $("copySecret").textContent = "copiado";
+  };
+}
+function text6(){show('<h3>tecla 6</h3><p>' + esc(state.text6) + '</p>');}
+function text7(){show('<h3>tecla 7</h3><p>' + esc(state.text7) + '</p>');}
+function barcode(){
+  show('<h3>código do arquivo</h3><div class="barcode">|||| ||| ||||| ||</div><p>' + esc(state.barcode) + '</p><div class="sub">' + esc(state.barcodeCaption) + '</div>');
+}
+function qr9(){
+  const content = state.qr9Content || "";
+  show('<h3>mostrar para alguém</h3><p>' + esc(state.qr9Title) + '</p><img class="qr-img" src="' + qrUrl(content) + '" alt="QR para alguém"><div class="sub">quem? mostre a essa pessoa.</div><button class="btn-inline" id="qr9Full">abrir QR grande</button>');
+  $("qr9Full").onclick = () => openFull("mostrar para alguém", content, "quem? mostre a essa pessoa.");
+}
+function parseSocials(){
+  return String(state.socials || "")
+    .split("\n")
+    .map(l => l.trim())
+    .filter(Boolean)
+    .map(l => {
+      const p = l.split("|");
+      return {name:(p[0] || "").trim(), url:normalizeUrl((p[1] || "").trim() || (p[0] || "").trim())};
+    })
+    .filter(i => i.name && i.url);
+}
+function socials(){
+  const data = parseSocials();
+  if(!data.length){show('<h3>canais</h3><p>nenhum canal adicionado.</p>');return;}
+  if(selectedSocial >= data.length) selectedSocial = 0;
+  const list = data.map((item,i) => '<button class="social-item ' + (i === selectedSocial ? "selected" : "") + '" data-index="' + i + '">' + esc(item.name) + '<span>' + esc(item.url) + '</span></button>').join("");
+  show('<h3>canais</h3><p>selecione uma rede e gere o QR.</p><div class="social-list">' + list + '</div><button class="btn-inline" id="makeSocialQr">gerar QR selecionado</button>');
+  document.querySelectorAll(".social-item").forEach(b => {
+    b.onclick = () => { selectedSocial = Number(b.dataset.index); socials(); };
+  });
+  $("makeSocialQr").onclick = () => {
+    const item = data[selectedSocial];
+    show('<h3>' + esc(item.name) + '</h3><img class="qr-img" src="' + qrUrl(item.url) + '" alt="QR social"><div class="sub">' + esc(item.url) + '</div><button class="btn-inline" id="socialFull">abrir QR grande</button>');
+    $("socialFull").onclick = () => openFull(item.name, item.url, item.url);
+  };
+}
+function makeQR(){
+  show('<h3>criar sinal</h3><p style="font-size:13px">escreva algo para transformar em QR.</p><textarea id="customQrText" placeholder="texto, frase ou link" style="width:100%;min-height:64px;margin-top:8px;border:0;border-radius:12px;padding:10px;font:inherit;"></textarea><button class="btn-inline" id="makeCustomQr">gerar QR</button>');
+  $("makeCustomQr").onclick = () => {
+    const v = $("customQrText").value.trim();
+    if(!v){$("makeCustomQr").textContent = "escreva algo primeiro";return;}
+    show('<h3>seu sinal</h3><img class="qr-img" src="' + qrUrl(v) + '" alt="QR personalizado"><div class="sub">' + esc(v) + '</div><button class="btn-inline" id="customFull">abrir QR grande</button>');
+    $("customFull").onclick = () => openFull("seu sinal", v, v);
+  };
+}
+function share(){
+  const url = window.location.href.split("#")[0];
+  show('<h3>compartilhar arquivo</h3><img class="qr-img" src="' + qrUrl(url) + '" alt="QR do arquivo"><div class="sub">escaneie para abrir este telefone público.</div><button class="btn-inline" id="shareFull">abrir QR grande</button>');
+  $("shareFull").onclick = () => openFull("compartilhar arquivo", url, "QR do link público deste telefone.");
+}
+
+$("enterBtn").onclick = () => { document.body.classList.add("entered"); window.scrollTo({top:0,behavior:"smooth"}); };
+$("callBtn").onclick = openLink;
+$("endBtn").onclick = themeNote;
+$("centerBtn").onclick = secretHint;
+$("centerBtn").ondblclick = secretReveal;
+$("keys").onclick = e => {
+  const key = e.target.closest(".key");
+  if(!key) return;
+  const a = key.dataset.action;
+  if(a === "makeqr") makeQR();
+  if(a === "socials") socials();
+  if(a === "text6") text6();
+  if(a === "text7") text7();
+  if(a === "barcode") barcode();
+  if(a === "qr9") qr9();
+  if(a === "share") share();
+  if(a === "home") home();
+};
+apply();
+
+</script>
+</body>
+</html>
